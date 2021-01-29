@@ -1,10 +1,25 @@
 /* Global */
 
 :root {
-    --dark-blue: #363f5f;
+    --white: #fff;
+    --gray: #f0f2f5;
+    --dark-gray: #969cb3;
     --green: #49aa26;
     --light-green: #3dd705;
+    --light-green-income: #12a454;
+    --dark-green: #2D4A22;
     --red: #e92929;
+}
+
+[data-theme="dark"] {
+    --white: #444c50;
+    --gray: #1F1F1F;
+    --dark-gray: #EBEBEB;
+    --green: #3a9a17;
+    --light-green: #3dd705;
+    --light-green-income: #1aef7a;
+    --dark-green: #2F3437;
+    --red: #ef3939;
 }
 
 * {
@@ -18,7 +33,7 @@ html {
 }
 
 body {
-    background: #f0f2f5;
+    background: var(--gray);
     font-family: 'Poppins', sans-serif;
 }
 
@@ -63,7 +78,7 @@ button {
     width: 100%;
     height: 50px;
     border: none;
-    color: #fff;
+    color: var(--white);
     background: var(--green);
     border-radius: 0.25rem;
     cursor: pointer;
@@ -96,14 +111,88 @@ button:hover {
 /* Header */
 
 header {
-    background: #2D4A22;
+    background: var(--dark-green);
     padding: 2rem 0 10rem;
     text-align: center;
 }
 
 #logo {
-    color: #fff;
+    color: var(--white);
     font-weight: 100;
+}
+
+.switch-wrapper {
+    height: 2rem;
+    display: flex;
+    align-items: center;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin: 1rem
+}
+
+.switch-wrapper img {
+    height: 100%;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+    margin: 0 .4rem;
+}
+  
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+  
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+}
+  
+input:checked + .slider {
+    background-color: #2196F3;
+}
+  
+input:focus + .slider {
+    box-shadow: 0 0 1px #2196F3;
+}
+  
+input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+}
+
+.slider.round {
+    border-radius: 34px;
+}
+  
+.slider.round:before {
+    border-radius: 50%;
 }
 
 /* Balance */
@@ -113,14 +202,14 @@ header {
 }
 
 #balance h2 {
-    color: #fff;
+    color: var(--white);
     margin-top: 0;
 }
 
 /* Cards */
 
 .card {
-    background: #fff;
+    background: var(--white);
     padding: 1.5rem 2rem;
     border-radius: 0.25rem;
     margin-bottom: 2rem;
@@ -143,7 +232,7 @@ header {
 
 .card.total {
     background: var(--green);
-    color: #fff;
+    color: var(--white);
 }
 
 /* Tabela */
@@ -157,7 +246,7 @@ header {
 #data-table {
     width: 100%;
     border-spacing: 0 0.5rem;
-    color: #969cb3;
+    color: var(--dark-gray)
 }
 
 table thead tr th:first-child,
@@ -171,7 +260,7 @@ table tbody tr td:last-child {
 }
 
 table th {
-    background: #fff;
+    background: var(--white);
     font-weight: normal;
     padding: 1rem 2rem;
     text-align: left;
@@ -186,7 +275,7 @@ table tbody tr:hover {
 }
 
 table td {
-    background: #fff;
+    background: var(--white);
     padding: 1rem 2rem;
 }
 
@@ -195,7 +284,7 @@ td.description {
 }
 
 td.income {
-    color: #12a454;
+    color: var(--light-green-income);
 }
 
 td.expense {
@@ -228,15 +317,15 @@ td img {
 }
 
 .modal {
-    background: #f0f2f5;
+    background: var(--gray);
     padding: 2.4rem;
-    
 }
 
 /* Form */
 
 #form {
     max-width: 500px;
+    color: var(--dark-gray)
 }
 
 #form h2 {
@@ -274,7 +363,7 @@ input {
 footer {
     text-align: center;
     padding: 4rem 0 2rem;
-    color: var(--dark-blue);
+    color: var(--dark-gray);
     opacity: 0.6;
     position: relative;
     z-index: -1;
@@ -291,6 +380,12 @@ footer {
         display: grid;
         grid-template-columns: repeat(3, 1fr);
         gap: 2rem;
+    }
+}
+
+@media (max-width: 600px) {
+    .switch-wrapper img {
+        display: none;
     }
 }
 
