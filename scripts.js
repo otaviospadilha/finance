@@ -56,7 +56,14 @@ const Transaction = {
     },
 
     total() {
-        return Transaction.incomes() + Transaction.expenses()
+        let total = Transaction.incomes() + Transaction.expenses()
+        if (total < 0) {
+            console.log("entrou")
+            document.querySelector('.total').style.background = "#ef3939"
+        }else{
+            document.querySelector('.total').style.background = "#3a9a17"
+        }
+        return total;
     }
 }
 
