@@ -3,7 +3,7 @@ const Modal = {
         //Abrir Modal
         //Adicionar a class active ao modal
         document.querySelector('.modal-overlay').classList.add('active');
-        document.querySelector('#date').value = Modal.getDate();
+        
     },
     close() {
         //Fechar Modal
@@ -210,6 +210,7 @@ const App = {
         Transaction.all.forEach(DOM.addTransaction)
         DOM.updateBalance()
         Storage.set(Transaction.all)
+        document.querySelector('#date').value = Modal.getDate()
     },
 
     reload() {
