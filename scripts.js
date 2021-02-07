@@ -3,11 +3,27 @@ const Modal = {
         //Abrir Modal
         //Adicionar a class active ao modal
         document.querySelector('.modal-overlay').classList.add('active');
+        document.querySelector('#date').value = Modal.getDate();
     },
     close() {
         //Fechar Modal
         //Remover a class active ao modal
         document.querySelector('.modal-overlay').classList.remove('active');
+    },
+    getDate() {
+        let date = new Date()
+        let day = date.getDate()
+        let month = date.getMonth()+1
+        let year = date.getFullYear()
+        function formatDate(d, m, y) {
+            if(d<10)
+                d = `0${d}`
+            if(m<10)
+                m = `0${m}`
+
+            return `${y}-${m}-${d}`
+        }
+        return formatDate(day, month, year)
     }
 }
 
@@ -88,7 +104,10 @@ const DOM = {
         <td class="${CSSclass}">${amount}</td>
         <td class="date">${transaction.date}</td>
         <td>
-            <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover Transação">
+            <i class="far fa-edit"></i>
+        </td>
+        <td>
+            <i class="far fa-trash-alt" onclick="Transaction.remove(${index})"></i>
         </td>
         `
 

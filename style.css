@@ -291,8 +291,17 @@ td.expense {
     color: var(--red);
 }
 
-td img {
+td i {
+    font-size: 1.1rem;
     cursor: pointer;
+}
+
+td .far.fa-edit {
+    color: var(--dark-gray);
+}
+
+td .far.fa-trash-alt {
+    color: var(--red);
 }
 
 /* Modal */
