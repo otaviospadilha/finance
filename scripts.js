@@ -3,7 +3,7 @@ const Modal = {
         //Abrir Modal
         //Adicionar a class active ao modal
         document.querySelector('.modal-overlay').classList.add('active');
-        
+        document.querySelector('#date').value = Modal.getDate()
     },
     close() {
         //Fechar Modal
@@ -34,6 +34,17 @@ const Storage = {
 
     set(transactions) {
         localStorage.setItem("dev.finances:transactions", JSON.stringify(transactions))
+    },
+
+    sort() {
+        if (Transaction.all.length > 0) {
+            Transaction.all.sort((a,b)=> {
+                let aa = a.date.split('/').reverse().join()
+                let bb = b.date.split('/').reverse().join()
+                return aa > bb ? -1 : (aa > bb ? 1 : 0)
+            })
+        }
+        App.reload()
     }
 }
 
@@ -74,7 +85,6 @@ const Transaction = {
     total() {
         let total = Transaction.incomes() + Transaction.expenses()
         if (total < 0) {
-            console.log("entrou")
             document.querySelector('.total').style.background = "#ef3939"
         }else{
             document.querySelector('.total').style.background = "#3a9a17"
@@ -198,6 +208,7 @@ const Form = {
             const transaction = Form.formatValues()
             Transaction.add(transaction)
             Form.clearFields()
+            Storage.sort()
             Modal.close()
         } catch (error){
             alert(error.message)
@@ -210,7 +221,6 @@ const App = {
         Transaction.all.forEach(DOM.addTransaction)
         DOM.updateBalance()
         Storage.set(Transaction.all)
-        document.querySelector('#date').value = Modal.getDate()
     },
 
     reload() {
